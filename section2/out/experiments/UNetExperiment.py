@@ -97,9 +97,11 @@ class UNetExperiment:
             # shape [BATCH_SIZE, 1, PATCH_SIZE, PATCH_SIZE] into variables data and target. 
             # Feed data to the model and feed target to the loss function
             # 
-            data = batch["image"].type(torch.cuda.FloatTensor)
+            #data = batch["image"].type(torch.cuda.FloatTensor)
+            #target = batch["seg"].to(device="cuda")
+            data = batch["image"].to(device="cuda")
             target = batch["seg"].to(device="cuda")
-
+            
             prediction = self.model(data)
 
             # We are also getting softmax'd version of prediction to output a probability map
