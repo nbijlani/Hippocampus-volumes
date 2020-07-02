@@ -96,6 +96,6 @@ def med_reshape(image, new_shape):
     reshaped_image = np.zeros(new_shape)
 
     # TASK: write your original image into the reshaped image
-    # <CODE GOES HERE>
-
+    reshaped_image = np.resize(image, new_shape)
+    
     return reshaped_image
