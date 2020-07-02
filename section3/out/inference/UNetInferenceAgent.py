@@ -46,7 +46,7 @@ class UNetInferenceAgent:
 
         for slc_ix in range(volume.shape[0]):
             img = volume[slc_ix,:,:]
-            tsr_test = torch.from_numpy(img.astype(np.single)/255.0).unsqueeze(0).unsqueeze(0)
+            tsr_test = torch.from_numpy(img.astype(np.single)/255.0).unsqueeze(0).unsqueeze(0).type(torch.FloatTensor)
             pred = self.model(tsr_test.to(self.device))
             pred = np.squeeze(pred.cpu().detach())
             slices[slc_ix,:,:] = torch.argmax(pred, dim=0)
@@ -77,7 +77,7 @@ class UNetInferenceAgent:
 
         for slc_ix in range(volume.shape[0]):
             img = volume[slc_ix,:,:]
-            tsr_test = torch.from_numpy(img.astype(np.single)/255.0).unsqueeze(0).unsqueeze(0)
+            tsr_test = torch.from_numpy(img.astype(np.single)/255.0).unsqueeze(0).unsqueeze(0).type(torch.FloatTensor)
             pred = self.model(tsr_test.to(self.device))
             pred = np.squeeze(pred.cpu().detach())
             slices[slc_ix,:,:] = torch.argmax(pred, dim=0)
